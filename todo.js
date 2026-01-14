@@ -5,20 +5,22 @@ function dodajZadatak() {
   if (tekst === "") return;
 
   const li = document.createElement("li");
-  li.textContent = tekst;
 
-  // ✔ Efekat "završeno"
-  li.onclick = () => {
-    li.classList.toggle("zavrsen");
+  const span = document.createElement("span");
+  span.textContent = tekst;
+
+  // Klik na tekst označava kao završeno
+  span.onclick = () => {
+    span.classList.toggle("zavrsen");
   };
 
   const dugme = document.createElement("button");
   dugme.textContent = "Obriši";
   dugme.onclick = () => li.remove();
 
+  li.appendChild(span);
   li.appendChild(dugme);
   document.getElementById("listaZadataka").appendChild(li);
 
   unos.value = "";
 }
-
