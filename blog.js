@@ -63,3 +63,13 @@ function obrisiPost(index) {
 }
 
 prikaziPostove();
+function pripremiIzmenu(index) {
+  const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
+  const post = postovi[index];
+
+  document.getElementById("naslov").value = post.naslov;
+  document.getElementById("sadrzaj").value = post.sadrzaj;
+
+  indeksZaIzmenu = index;
+}
+
