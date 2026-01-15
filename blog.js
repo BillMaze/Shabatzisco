@@ -83,3 +83,8 @@ function pripremiIzmenu(index) {
 }
 
 prikaziPostove();
+function obrisiSve() {
+  localStorage.removeItem("postovi"); // obriši sve
+  indeksZaIzmenu = null;
+  prikaziPostove(); // prikaži prazno
+}
