@@ -48,4 +48,11 @@ function prikaziPostove() {
 
 // Pozovi odmah kad se stranica učita
 prikaziPostove();
+  function obrisiPost(index) {
+  const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
+  postovi.splice(index, 1); // ukloni jedan element na toj poziciji
+  localStorage.setItem("postovi", JSON.stringify(postovi));
+  prikaziPostove();
+}
+
 
