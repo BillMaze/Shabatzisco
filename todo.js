@@ -90,5 +90,20 @@ function filtriraj(tip) {
       li.style.display = span.classList.contains("zavrsen") ? "flex" : "none";
     }
   });
+}function filtriraj(tip) {
+  const sviLi = document.querySelectorAll("#listaZadataka li");
+
+  sviLi.forEach(li => {
+    const span = li.querySelector("span");
+
+    if (tip === "svi") {
+      li.style.display = "flex";
+    } else if (tip === "aktivni") {
+      li.style.display = span.classList.contains("zavrsen") ? "none" : "flex";
+    } else if (tip === "zavrseni") {
+      li.style.display = span.classList.contains("zavrsen") ? "flex" : "none";
+    }
+  });
 }
+
 
