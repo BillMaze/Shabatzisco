@@ -26,11 +26,12 @@ button {
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
+  margin-top: 10px;
   font-size: 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 button:hover {
@@ -58,12 +59,4 @@ button:hover {
 
 small {
   color: #777;
-}button {
-  display: inline-block !important;
-  background-color: red !important;
-  color: white !important;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 16px;
 }
-
