@@ -1,3 +1,5 @@
+let indeksZaIzmenu = null;
+
 function dodajPost() {
   const naslov = document.getElementById("naslov").value;
   const sadrzaj = document.getElementById("sadrzaj").value;
@@ -28,39 +30,36 @@ function dodajPost() {
   prikaziPostove();
 }
 
-}
-
 function prikaziPostove() {
   const kontejner = document.getElementById("listaPostova");
   kontejner.innerHTML = "";
 
   const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
 
-postovi.forEach((post, index) => {
-  const div = document.createElement("div");
+  postovi.forEach((post, index) => {
+    const div = document.createElement("div");
 
-  const dugmeObrisi = document.createElement("button");
-  dugmeObrisi.textContent = "Obriši";
-  dugmeObrisi.onclick = () => obrisiPost(index);
+    const dugmeObrisi = document.createElement("button");
+    dugmeObrisi.textContent = "Obriši";
+    dugmeObrisi.onclick = () => obrisiPost(index);
 
-  const dugmeIzmeni = document.createElement("button");
-  dugmeIzmeni.textContent = "Izmeni";
-  dugmeIzmeni.style.marginLeft = "10px";
-  dugmeIzmeni.onclick = () => pripremiIzmenu(index);
+    const dugmeIzmeni = document.createElement("button");
+    dugmeIzmeni.textContent = "Izmeni";
+    dugmeIzmeni.style.marginLeft = "10px";
+    dugmeIzmeni.onclick = () => pripremiIzmenu(index);
 
-  div.innerHTML = `
-    <h3>${post.naslov}</h3>
-    <p>${post.sadrzaj}</p>
-    <small>🕒 ${post.vreme}</small>
-  `;
+    div.innerHTML = `
+      <h3>${post.naslov}</h3>
+      <p>${post.sadrzaj}</p>
+      <small>🕒 ${post.vreme}</small>
+    `;
 
-  div.appendChild(dugmeObrisi);
-  div.appendChild(dugmeIzmeni);
-  div.appendChild(document.createElement("hr"));
+    div.appendChild(dugmeObrisi);
+    div.appendChild(dugmeIzmeni);
+    div.appendChild(document.createElement("hr"));
 
-  kontejner.appendChild(div);
-});
-
+    kontejner.appendChild(div);
+  });
 }
 
 function obrisiPost(index) {
@@ -70,7 +69,6 @@ function obrisiPost(index) {
   prikaziPostove();
 }
 
-prikaziPostove();
 function pripremiIzmenu(index) {
   const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
   const post = postovi[index];
@@ -81,3 +79,4 @@ function pripremiIzmenu(index) {
   indeksZaIzmenu = index;
 }
 
+prikaziPostove();
