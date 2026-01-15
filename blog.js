@@ -103,4 +103,8 @@ function pripremiIzmenu(index) {
 
   indeksZaIzmenu = index;
 }
+const dugmeIzmeni = document.createElement("button");
+dugmeIzmeni.textContent = "Izmeni";
+dugmeIzmeni.style.marginLeft = "10px";
+dugmeIzmeni.onclick = () => pripremiIzmenu(index);
 
