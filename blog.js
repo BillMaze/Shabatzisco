@@ -1,3 +1,4 @@
+// GLOBALNA promenljiva za edit
 let indeksZaIzmenu = null;
 
 function dodajPost() {
@@ -39,13 +40,15 @@ function prikaziPostove() {
   postovi.forEach((post, index) => {
     const div = document.createElement("div");
 
+    // DUGME Obriši
     const dugmeObrisi = document.createElement("button");
     dugmeObrisi.textContent = "Obriši";
     dugmeObrisi.onclick = () => obrisiPost(index);
 
+    // DUGME Izmeni
     const dugmeIzmeni = document.createElement("button");
     dugmeIzmeni.textContent = "Izmeni";
-    dugmeIzmeni.style.marginLeft = "10px";
+    dugmeIzmeni.style.marginLeft = "8px";
     dugmeIzmeni.onclick = () => pripremiIzmenu(index);
 
     div.innerHTML = `
