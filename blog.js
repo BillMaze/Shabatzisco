@@ -1,4 +1,6 @@
 function dodajPost() {
+  let indeksZaIzmenu = null;
+
   const naslov = document.getElementById("naslov").value;
   const sadrzaj = document.getElementById("sadrzaj").value;
 
@@ -26,25 +28,31 @@ function prikaziPostove() {
 
   const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
 
-  postovi.forEach((post, index) => {
-    const div = document.createElement("div");
+postovi.forEach((post, index) => {
+  const div = document.createElement("div");
 
-    // ✅ Ovde se pravi i dugme OBRIŠI
-    const dugme = document.createElement("button");
-    dugme.textContent = "Obriši";
-    dugme.onclick = () => obrisiPost(index);
+  const dugmeObrisi = document.createElement("button");
+  dugmeObrisi.textContent = "Obriši";
+  dugmeObrisi.onclick = () => obrisiPost(index);
 
-    div.innerHTML = `
-      <h3>${post.naslov}</h3>
-      <p>${post.sadrzaj}</p>
-      <small>🕒 ${post.vreme}</small>
-    `;
+  const dugmeIzmeni = document.createElement("button");
+  dugmeIzmeni.textContent = "Izmeni";
+  dugmeIzmeni.style.marginLeft = "10px";
+  dugmeIzmeni.onclick = () => pripremiIzmenu(index);
 
-    div.appendChild(dugme); // dodaj dugme
-    div.appendChild(document.createElement("hr")); // razdvoj linijom
+  div.innerHTML = `
+    <h3>${post.naslov}</h3>
+    <p>${post.sadrzaj}</p>
+    <small>🕒 ${post.vreme}</small>
+  `;
 
-    kontejner.appendChild(div);
-  });
+  div.appendChild(dugmeObrisi);
+  div.appendChild(dugmeIzmeni);
+  div.appendChild(document.createElement("hr"));
+
+  kontejner.appendChild(div);
+});
+
 }
 
 function obrisiPost(index) {
