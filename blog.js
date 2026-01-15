@@ -93,3 +93,9 @@ function obrisiSve() {
   indeksZaIzmenu = null;
   prikaziPostove();
 }
+function obrisiSve() {
+  localStorage.removeItem("postovi");
+  indeksZaIzmenu = null;
+  prikaziPostove();
+}
+
