@@ -9,26 +9,40 @@ function dodajZadatak() {
   const span = document.createElement("span");
   span.textContent = tekst;
 
-  // Klik na tekst označava kao završeno
   span.onclick = () => {
     span.classList.toggle("zavrsen");
+    sacuvajZadatke();
   };
 
   const dugme = document.createElement("button");
   dugme.textContent = "Obriši";
-  dugme.onclick = () => li.remove();
+  dugme.onclick = () => {
+    li.remove();
+    sacuvajZadatke();
+  };
 
   li.appendChild(span);
   li.appendChild(dugme);
   document.getElementById("listaZadataka").appendChild(li);
 
   unos.value = "";
-    document.getElementById("listaZadataka").appendChild(li);
-
-  unos.value = "";
-
   sacuvajZadatke();
 }
+
+function sacuvajZadatke() {
+  const sviLi = document.querySelectorAll("#listaZadataka li");
+  const podaci = [];
+
+  sviLi.forEach(li => {
+    const span = li.querySelector("span");
+    const tekst = span.textContent;
+    const zavrsen = span.classList.contains("zavrsen");
+    podaci.push({ tekst, zavrsen });
+  });
+
+  localStorage.setItem("zadaci", JSON.stringify(podaci));
+}
+
 function ucitajZadatke() {
   const podaci = JSON.parse(localStorage.getItem("zadaci")) || [];
 
@@ -44,14 +58,14 @@ function ucitajZadatke() {
 
     span.onclick = () => {
       span.classList.toggle("zavrsen");
-      sacuvajZadatke(); // ažuriraj LS kad se klikne
+      sacuvajZadatke();
     };
 
     const dugme = document.createElement("button");
     dugme.textContent = "Obriši";
     dugme.onclick = () => {
       li.remove();
-      sacuvajZadatke(); // ažuriraj LS kad se obriše
+      sacuvajZadatke();
     };
 
     li.appendChild(span);
@@ -60,20 +74,5 @@ function ucitajZadatke() {
   });
 }
 
-function sacuvajZadatke() {
-  const sviLi = document.querySelectorAll("#listaZadataka li");
-  const podaci = [];
-
-  sviLi.forEach(li => {
-    const tekst = li.querySelector("span").textContent;
-    const zavrsen = li.querySelector("span").classList.contains("zavrsen");
-    podaci.push({ tekst, zavrsen });
-  });
-
-  localStorage.setItem("zadaci", JSON.stringify(podaci));
-}
-
-}
-
+// ⬅️ Ovo mora da bude NA KRAJU!
 ucitajZadatke();
-
