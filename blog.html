@@ -13,4 +13,26 @@
 </head>
 <body>
 
-  <h1>📝 Moj Blog</h
+  <h1>📝 Moj Blog</h1>
+
+  <input type="text" id="naslov" placeholder="Naslov posta">
+  <textarea id="sadrzaj" rows="4" placeholder="Sadržaj posta..."></textarea>
+
+  <button onclick="dodajPost()">➕ Dodaj post</button>
+  <button onclick="obrisiSve()">🗑️ Obriši sve postove</button>
+
+  <hr>
+
+  <div id="listaPostova"></div>
+
+  <script>
+    let indeksZaIzmenu = null;
+
+    function dodajPost() {
+      const naslov = document.getElementById("naslov").value;
+      const sadrzaj = document.getElementById("sadrzaj").value;
+      if (naslov === "" || sadrzaj === "") return;
+
+      const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
+
+      if (i
