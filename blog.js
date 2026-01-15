@@ -29,14 +29,19 @@ function prikaziPostove() {
   postovi.forEach((post, index) => {
     const div = document.createElement("div");
 
+    // ✅ Ovde se pravi i dugme OBRIŠI
+    const dugme = document.createElement("button");
+    dugme.textContent = "Obriši";
+    dugme.onclick = () => obrisiPost(index);
+
     div.innerHTML = `
       <h3>${post.naslov}</h3>
       <p>${post.sadrzaj}</p>
       <small>🕒 ${post.vreme}</small>
-      <br />
-      <button onclick="obrisiPost(${index})">Obriši</button>
-      <hr />
     `;
+
+    div.appendChild(dugme); // dodaj dugme
+    div.appendChild(document.createElement("hr")); // razdvoj linijom
 
     kontejner.appendChild(div);
   });
