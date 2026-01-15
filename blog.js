@@ -1,25 +1,33 @@
 function dodajPost() {
-  let indeksZaIzmenu = null;
-
   const naslov = document.getElementById("naslov").value;
   const sadrzaj = document.getElementById("sadrzaj").value;
 
   if (naslov === "" || sadrzaj === "") return;
 
-  const noviPost = {
-    naslov,
-    sadrzaj,
-    vreme: new Date().toLocaleString()
-  };
-
   const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
-  postovi.unshift(noviPost);
+
+  if (indeksZaIzmenu !== null) {
+    postovi[indeksZaIzmenu].naslov = naslov;
+    postovi[indeksZaIzmenu].sadrzaj = sadrzaj;
+    postovi[indeksZaIzmenu].vreme = new Date().toLocaleString();
+    indeksZaIzmenu = null;
+  } else {
+    const noviPost = {
+      naslov,
+      sadrzaj,
+      vreme: new Date().toLocaleString()
+    };
+    postovi.unshift(noviPost);
+  }
+
   localStorage.setItem("postovi", JSON.stringify(postovi));
 
   document.getElementById("naslov").value = "";
   document.getElementById("sadrzaj").value = "";
 
   prikaziPostove();
+}
+
 }
 
 function prikaziPostove() {
