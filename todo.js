@@ -74,4 +74,6 @@ function sacuvajZadatke() {
 }
 
 }
+
 ucitajZadatke();
+
