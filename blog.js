@@ -10,20 +10,17 @@ function dodajPost() {
     vreme: new Date().toLocaleString()
   };
 
-  // Učitaj sve postojeće postove iz localStorage
   const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
-  postovi.unshift(noviPost); // dodaj novi na početak
+  postovi.unshift(noviPost);
   localStorage.setItem("postovi", JSON.stringify(postovi));
 
-  // Očisti polja
   document.getElementById("naslov").value = "";
   document.getElementById("sadrzaj").value = "";
 
-  prikaziPostove(); // osveži prikaz
+  prikaziPostove();
 }
 
 function prikaziPostove() {
- function prikaziPostove() {
   const kontejner = document.getElementById("listaPostova");
   kontejner.innerHTML = "";
 
@@ -45,14 +42,11 @@ function prikaziPostove() {
   });
 }
 
-
-// Pozovi odmah kad se stranica učita
-prikaziPostove();
-  function obrisiPost(index) {
+function obrisiPost(index) {
   const postovi = JSON.parse(localStorage.getItem("postovi")) || [];
-  postovi.splice(index, 1); // ukloni jedan element na toj poziciji
+  postovi.splice(index, 1);
   localStorage.setItem("postovi", JSON.stringify(postovi));
   prikaziPostove();
 }
 
-
+prikaziPostove();
