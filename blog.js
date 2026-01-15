@@ -93,5 +93,5 @@ function obrisiSve() {
   indeksZaIzmenu = null;
   prikaziPostove();
 }
-
+obrisiSve()
 
